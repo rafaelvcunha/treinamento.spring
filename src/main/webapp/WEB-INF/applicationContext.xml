@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+		xmlns:mvc="http://www.springframework.org/schema/mvc"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+							http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+							http://www.springframework.org/schema/beans 
+							http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+							http://www.springframework.org/schema/context 
+							http://www.springframework.org/schema/context/spring-context-3.0.xsd
+							http://www.springframework.org/schema/data/jpa
+							http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+							http://www.springframework.org/schema/aop
+							http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+							http://www.springframework.org/schema/tx
+							http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+
+	<!-- Informa o pacote onde o Spring ira buscar as classes anotadas (@Controller, @Service...)  -->
+	<context:component-scan base-package="br.com.accesstage.treinamento.spring" />
+
+	<!--  Habilita a configuração dos beans via annotation -->
+	<context:annotation-config />
+
+	<!-- Diz ao Spring que ele deve usar a configuração das annotations -->
+	<mvc:annotation-driven />
+
+	<tx:annotation-driven />
+
+	<!-- Mapeamento de diretório -->
+	<mvc:resources mapping="/assets/**" location="/WEB-INF/assets/*" />
+
+	<!-- Configuração das Views Spring -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+		<property name="prefix" value="/WEB-INF/jsps/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+
+	<!-- Configuração dos templates -->
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Configurações de Banco de Dados -->
+	<bean id="dsHandsOn" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:/jdbc/datasources/HandsOnDS"/>
+	</bean>
+
+	<!-- Beans DAO -->
+<!-- 	<bean id="aplicacaoDAO" class="br.com.accesstage.autenticador.dao.impl.AplicacaoDAOImpl" />
+	<bean id="tokenDAO" class="br.com.accesstage.autenticador.dao.impl.TokenDAOImpl" />
+	<bean id="usuarioDAO" class="br.com.accesstage.autenticador.dao.impl.UsuarioDAOImpl" /> -->
+
+	<!-- Beans Service -->
+<!-- 	<bean id="aplicacaoService" class="br.com.accesstage.autenticador.service.impl.AplicacaoServiceImpl" />
+	<bean id="tokenService" class="br.com.accesstage.autenticador.service.impl.TokenServiceImpl" />
+	<bean id="usuarioService" class="br.com.accesstage.autenticador.service.impl.UsuarioServiceImpl" /> -->
+
+</beans>
