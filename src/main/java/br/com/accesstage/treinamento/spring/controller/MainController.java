@@ -25,4 +25,6 @@ public class MainController {
 		model.addObject("listaUsuarios", usuarioService.listar());
 		return model;
 	}
+	
+
 }

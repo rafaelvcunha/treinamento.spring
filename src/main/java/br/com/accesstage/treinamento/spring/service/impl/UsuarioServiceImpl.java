@@ -20,4 +20,27 @@ public class UsuarioServiceImpl implements UsuarioService{
 		return usuarioDAO.listar();
 	}
 
+	@Override
+	public void add(UsuarioEntity usuarioEntity) {
+		usuarioDAO.add(usuarioEntity);
+		
+	}
+
+	@Override
+	public void edit(UsuarioEntity usuarioEntity) {
+		usuarioDAO.edit(usuarioEntity);
+		
+	}
+
+	@Override
+	public void delete(String usuario) {
+		usuarioDAO.delete(usuario);
+		
+	}
+
+	@Override
+	public UsuarioEntity getUsuarioEntity(String usuario) {
+		return usuarioDAO.getUsuarioEntity(usuario);
+	}
+
 }
